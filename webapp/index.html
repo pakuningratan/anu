@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forum Diskusi ASN Trenggalek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo-group">
+                <div class="badge">Kabupaten Trenggalek</div>
+                <h1>Platform Diskusi ASN Trenggalek</h1>
+            </div>
+            <nav class="main-nav" aria-label="Navigasi utama">
+                <a href="#beranda">Beranda</a>
+                <a href="#forum">Forum</a>
+                <a href="#agenda">Agenda</a>
+                <a href="#pengumuman">Pengumuman</a>
+                <a href="#panduan">Panduan</a>
+            </nav>
+            <button class="cta">Masuk Portal</button>
+        </div>
+    </header>
+
+    <main id="beranda" class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Kolaborasi lintas OPD untuk pelayanan publik yang lebih baik</h2>
+                <p>Forum khusus Aparatur Sipil Negara Kabupaten Trenggalek untuk berbagi ide, berdiskusi, dan menyelesaikan tantangan pelayanan masyarakat.</p>
+                <div class="hero-actions">
+                    <button class="primary" id="buatDiskusi">Mulai Diskusi</button>
+                    <button class="secondary" id="lihatPanduan">Lihat Panduan</button>
+                </div>
+            </div>
+            <div class="hero-highlight">
+                <div>
+                    <span class="highlight-metric" id="totalDiskusi">0</span>
+                    <span>Diskusi aktif</span>
+                </div>
+                <div>
+                    <span class="highlight-metric" id="totalPeserta">0</span>
+                    <span>Peserta terlibat</span>
+                </div>
+                <div>
+                    <span class="highlight-metric" id="diskusiMingguIni">0</span>
+                    <span>Topik baru minggu ini</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="panels">
+            <article class="panel">
+                <h3>Trending</h3>
+                <ul id="trendingList" class="tag-list"></ul>
+            </article>
+            <article class="panel">
+                <h3>OPD Teraktif</h3>
+                <ul id="opdTeraktif" class="metric-list"></ul>
+            </article>
+            <article class="panel">
+                <h3>Update Kebijakan</h3>
+                <ul id="updateKebijakan" class="announcement-list"></ul>
+            </article>
+        </section>
+
+        <section id="forum" class="forum">
+            <header class="section-header">
+                <div>
+                    <h2>Forum Diskusi</h2>
+                    <p>Kolaborasi lintas perangkat daerah dan komunitas inovator ASN.</p>
+                </div>
+                <div class="filters">
+                    <input type="search" id="pencarian" placeholder="Cari topik atau kata kunci" aria-label="Cari topik diskusi">
+                    <select id="filterKategori" aria-label="Filter berdasarkan kategori">
+                        <option value="semua">Semua kategori</option>
+                    </select>
+                </div>
+            </header>
+            <div id="daftarDiskusi" class="thread-list"></div>
+        </section>
+
+        <section id="agenda" class="grid-section">
+            <div class="grid-card">
+                <h3>Agenda ASN</h3>
+                <ul id="agendaList" class="agenda-list"></ul>
+            </div>
+            <div id="pengumuman" class="grid-card">
+                <h3>Pengumuman Resmi</h3>
+                <ul id="pengumumanList" class="announcement-list"></ul>
+            </div>
+            <div id="panduan" class="grid-card">
+                <h3>Pusat Pengetahuan</h3>
+                <ul id="resourceList" class="resource-list"></ul>
+            </div>
+        </section>
+
+        <section class="submission" aria-labelledby="formTitle">
+            <div class="form-card">
+                <h2 id="formTitle">Buat Diskusi Baru</h2>
+                <form id="formDiskusi">
+                    <div class="field">
+                        <label for="judul">Judul Diskusi</label>
+                        <input type="text" id="judul" name="judul" required>
+                    </div>
+                    <div class="field">
+                        <label for="kategori">Kategori</label>
+                        <select id="kategori" name="kategori" required></select>
+                    </div>
+                    <div class="field">
+                        <label for="opd">Unit/OPD</label>
+                        <input type="text" id="opd" name="opd" required>
+                    </div>
+                    <div class="field">
+                        <label for="penulis">Nama Pengusul</label>
+                        <input type="text" id="penulis" name="penulis" required>
+                    </div>
+                    <div class="field">
+                        <label for="ringkasan">Ringkasan</label>
+                        <textarea id="ringkasan" name="ringkasan" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="primary">Publikasikan Diskusi</button>
+                    <p id="formFeedback" role="status" aria-live="polite" class="feedback"></p>
+                </form>
+            </div>
+            <aside class="form-side">
+                <h3>Best Practice Kolaborasi</h3>
+                <ul>
+                    <li>Gunakan judul yang ringkas dan jelas.</li>
+                    <li>Cantumkan dampak langsung bagi layanan publik.</li>
+                    <li>Tag OPD atau mitra yang relevan.</li>
+                </ul>
+                <div class="insight">
+                    <h4>Insight Mingguan</h4>
+                    <p id="insightText"></p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <h4>Forum Diskusi ASN Trenggalek</h4>
+                <p>Memfasilitasi kolaborasi, inovasi, dan percepatan layanan publik di Kabupaten Trenggalek.</p>
+            </div>
+            <div>
+                <h4>Kontak</h4>
+                <ul>
+                    <li>Dinas Komunikasi dan Informatika</li>
+                    <li><a href="mailto:diskomasn@trenggalekkab.go.id">diskomasn@trenggalekkab.go.id</a></li>
+                    <li>Jl. Soekarno Hatta No. 1 Trenggalek</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ikuti Kami</h4>
+                <ul class="socials">
+                    <li><a href="https://www.trenggalekkab.go.id" target="_blank" rel="noreferrer">Portal Kabupaten</a></li>
+                    <li><a href="https://lapor.go.id" target="_blank" rel="noreferrer">LAPOR!</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-note">© <span id="tahunBerjalan"></span> Pemerintah Kabupaten Trenggalek</p>
+    </footer>
+
+    <dialog id="panduanDialog" class="modal" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h3 id="modalTitle">Panduan Partisipasi Diskusi</h3>
+                <button id="tutupPanduan" aria-label="Tutup panduan">×</button>
+            </header>
+            <div class="modal-body">
+                <ol>
+                    <li>Pilih kategori diskusi yang relevan dengan isu Anda.</li>
+                    <li>Sampaikan fakta, data pendukung, dan usulan solusi.</li>
+                    <li>Tag rekan atau OPD yang dapat membantu menindaklanjuti.</li>
+                    <li>Gunakan fitur agenda untuk menjadwalkan tindak lanjut.</li>
+                    <li>Tindak lanjuti pengumuman untuk update kebijakan terbaru.</li>
+                </ol>
+            </div>
+            <footer class="modal-footer">
+                <button class="primary" id="pahamiPanduan">Saya Mengerti</button>
+            </footer>
+        </div>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>
